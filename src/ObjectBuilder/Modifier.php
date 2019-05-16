@@ -36,12 +36,18 @@ class Modifier
     /**
      * Alias shortcut method to define the template directory
      *
+     * @see https://github.com/propelorm/Propel2/pull/1513
+     *
      * @param string $filename
      * @param array $replacements
      */
     protected function renderTemplate(string $filename, array $replacements = []): string
     {
-        return $this->builder->renderTemplate($filename, $replacements, '/ObjectBuilder/template/');
+        return $this->builder->renderTemplate(
+            $filename,
+            $replacements,
+            '/../../../../../../../rentpost/propel2-soft-delete-behavior/src/ObjectBuilder/template/', // Blame Propel
+        );
     }
 
 
@@ -90,8 +96,10 @@ class Modifier
      */
     public function preDelete(ObjectBuilder $builder): string
     {
+        $this->builder = $builder;
+
         return $this->renderTemplate('unDelete', [
-            'classname' => $builder->getStubPeerBuilder()->getClassname(),
+            'classname' => $builder->getStubQueryBuilder()->getClassname(),
             'setter' => $this->getColumnSetter(),
             'addHooks' => $builder->getGeneratorConfig()->getConfigProperty('addHooks'), // ->get()['generator']['objectModel']['addHooks']
         ]);

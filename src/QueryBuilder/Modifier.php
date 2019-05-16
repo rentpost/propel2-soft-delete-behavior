@@ -36,12 +36,18 @@ class Modifier
     /**
      * Alias shortcut method to define the template directory
      *
+     * @see https://github.com/propelorm/Propel2/pull/1513
+     *
      * @param string $filename
      * @param array $replacements
      */
     protected function renderTemplate(string $filename, array $replacements = []): string
     {
-        return $this->builder->renderTemplate($filename, $replacements, '/QueryBuilder/template/');
+        return $this->builder->renderTemplate(
+            $filename,
+            $replacements,
+            '/../../../../../../../rentpost/propel2-soft-delete-behavior/src/QueryBuilder/template/', // Blame Propel
+        );
     }
 
 
@@ -85,9 +91,9 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryIncludeDeleted(string &$code): void
+    public function addIncludeDeletedMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('includeDeleted');
+        $code = $this->renderTemplate('includeDeleted');
     }
 
 
@@ -96,10 +102,10 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQuerySoftDelete(string &$code): void
+    public function addSoftDeleteMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('softDelete', [
-            'deletedColumn' => $this->getColumnForParameter('deleted_column')->getPhpName(),
+        $code = $this->renderTemplate('softDelete', [
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
 
@@ -109,9 +115,9 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryForceDelete(string &$code): void
+    public function addForceDeleteMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('forceDelete');
+        $code = $this->renderTemplate('forceDelete');
     }
 
 
@@ -120,9 +126,9 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryForceDeleteAll(string &$code): void
+    public function addForceDeleteAllMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('forceDeleteAll');
+        $code = $this->renderTemplate('forceDeleteAll');
     }
 
 
@@ -131,10 +137,10 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryUnDelete(string &$code): void
+    public function addUnDeleteMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('unDelete', [
-            'deletedColumn' => $this->getColumnForParameter('deleted_column')->getPhpName(),
+        $code = $this->renderTemplate('unDelete', [
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
 
@@ -144,9 +150,9 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryEnableSoftDelete(string &$code): void
+    public function addEnableSoftDeleteMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('enableSoftDelete');
+        $code = $this->renderTemplate('enableSoftDelete');
     }
 
 
@@ -155,9 +161,9 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryDisableSoftDelete(string &$code): void
+    public function addDisableSoftDeleteMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('disableSoftDelete');
+        $code = $this->renderTemplate('disableSoftDelete');
     }
 
 
@@ -166,9 +172,9 @@ class Modifier
      *
      * @param string $code
      */
-    public function addQueryIsSoftDeleteEnabled(string &$code): void
+    public function addIsSoftDeleteEnabledMethod(string &$code): void
     {
-        $code = $this->behavior->renderTemplate('isSoftDeleteEnabled');
+        $code = $this->renderTemplate('isSoftDeleteEnabled');
     }
 
 
@@ -181,9 +187,11 @@ class Modifier
      */
     public function preSelectQuery(QueryBuilder $builder): string
     {
-        return $this->behavior->renderTemplate('preSelect', [
-            'deletedColumn' => $this->getColumnForParameter('deleted_column')->getPhpName(),
-            'isSoftDeleteEnabled' => $builder->getStubQueryBuilder()->getClassname()::isSoftDeleteEnabled(),
+        $this->builder = $builder;
+
+        return $this->renderTemplate('preSelectQuery', [
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
+            'classname' => $builder->getStubQueryBuilder()->getClassname(),
         ]);
     }
 
@@ -195,8 +203,10 @@ class Modifier
      */
     public function preDeleteQuery(QueryBuilder $builder): string
     {
-        return $this->behavior->renderTemplate('preSelect', [
-            'isSoftDeleteEnabled' => $builder->getStubQueryBuilder()->getClassname()::isSoftDeleteEnabled(),
+        $this->builder = $builder;
+
+        return $this->renderTemplate('preDeleteQuery', [
+            'classname' => $builder->getStubQueryBuilder()->getClassname(),
         ]);
     }
 }
