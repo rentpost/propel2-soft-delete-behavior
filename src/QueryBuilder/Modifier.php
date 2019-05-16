@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Rentpost\Propel\SoftDelete\QueryBuilder;
 
-use Propel\Generator\Builder\Om\AbstractOMBuilder;
+use Propel\Generator\Builder\Om\QueryBuilder;
 use Rentpost\Propel\SoftDelete\Behavior;
 
 /**
@@ -18,7 +18,7 @@ class Modifier
     /** @var Behavior */
     protected $behavior;
 
-    /** @var AbstractOMBuilder */
+    /** @var QueryBuilder */
     protected $builder;
 
 
@@ -60,9 +60,9 @@ class Modifier
     /**
      * Query methods to be added to the base Query builder class
      *
-     * @param AbstractOMBuilder $builder
+     * @param QueryBuilder $builder
      */
-    public function queryMethods(AbstractOMBuilder $builder): string
+    public function queryMethods(QueryBuilder $builder): string
     {
         $this->builder = $builder;
         $code = '';
@@ -175,11 +175,11 @@ class Modifier
     /**
      * Adds the preSelect method logic
      *
-     * @param AbstractOMBuilder $builder
+     * @param QueryBuilder $builder
      *
      * @return string
      */
-    public function preSelectQuery(AbstractOMBuilder $builder): string
+    public function preSelectQuery(QueryBuilder $builder): string
     {
         return $this->behavior->renderTemplate('preSelect', [
             'deletedColumn' => $this->getColumnForParameter('deleted_column')->getPhpName(),
@@ -191,9 +191,9 @@ class Modifier
     /**
      * Adds the preDelete method logic
      *
-     * @param AbstractOMBuilder $builder
+     * @param QueryBuilder $builder
      */
-    public function preDeleteQuery(AbstractOMBuilder $builder): string
+    public function preDeleteQuery(QueryBuilder $builder): string
     {
         return $this->behavior->renderTemplate('preSelect', [
             'isSoftDeleteEnabled' => $builder->getStubQueryBuilder()->getClassname()::isSoftDeleteEnabled(),

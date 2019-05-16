@@ -4,7 +4,7 @@ declare(strict_types = 1);
 
 namespace Rentpost\Propel\SoftDelete\ObjectBuilder;
 
-use Propel\Generator\Builder\Om\AbstractOMBuilder;
+use Propel\Generator\Builder\Om\ObjectBuilder;
 use Rentpost\Propel\SoftDelete\Behavior;
 
 /**
@@ -18,7 +18,7 @@ class Modifier
     /** @var Behavior */
     protected $behavior;
 
-    /** @var AbstractOMBuilder */
+    /** @var ObjectBuilder */
     protected $builder;
 
 
@@ -57,9 +57,9 @@ class Modifier
     /**
      * Object methods to add to model class
      *
-     * @param AbstractOMBuilder $builder
+     * @param ObjectBuilder $builder
      */
-    public function objectMethods(AbstractOMBuilder $builder): string
+    public function objectMethods(ObjectBuilder $builder): string
     {
         $this->builder = $builder;
         $code = '';
@@ -86,9 +86,9 @@ class Modifier
     /**
      * Adds code for the preDelete hook method
      *
-     * @param AbstractOMBuilder $builder
+     * @param ObjectBuilder $builder
      */
-    public function preDelete(AbstractOMBuilder $builder): string
+    public function preDelete(ObjectBuilder $builder): string
     {
         return $this->renderTemplate('unDelete', [
             'classname' => $builder->getStubPeerBuilder()->getClassname(),
