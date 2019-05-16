@@ -56,10 +56,9 @@ class Modifier
      */
     public function queryAttributes(): string
     {
-        $attr = 'protected static $softDelete = true;';
-        $attr .= 'protected $localSoftDelete = true';
-
-        return $attr;
+        return "protected static \$softDelete = true;
+    protected \$localSoftDelete = true;
+    ";
     }
 
 
@@ -191,7 +190,6 @@ class Modifier
 
         return $this->renderTemplate('preSelectQuery', [
             'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
-            'classname' => $builder->getStubQueryBuilder()->getClassname(),
         ]);
     }
 
@@ -205,8 +203,6 @@ class Modifier
     {
         $this->builder = $builder;
 
-        return $this->renderTemplate('preDeleteQuery', [
-            'classname' => $builder->getStubQueryBuilder()->getClassname(),
-        ]);
+        return $this->renderTemplate('preDeleteQuery');
     }
 }

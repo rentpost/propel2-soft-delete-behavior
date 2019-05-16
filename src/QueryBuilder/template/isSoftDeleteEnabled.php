@@ -3,7 +3,7 @@
  *
  * @return boolean True if the soft_delete behavior is enabled
  */
-public static function isSoftDeleteEnabled(): void
+public static function isSoftDeleteEnabled(): bool
 {
     return self::$softDelete;
 }
