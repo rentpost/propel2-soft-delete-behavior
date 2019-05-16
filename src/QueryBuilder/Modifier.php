@@ -56,9 +56,10 @@ class Modifier
      */
     public function queryAttributes(): string
     {
+        // This formatting is annoying, but it's correct
         return "protected static \$softDelete = true;
-    protected \$localSoftDelete = true;
-    ";
+protected \$localSoftDelete = true;
+";
     }
 
 
