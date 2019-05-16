@@ -101,7 +101,7 @@ class Modifier
         return $this->renderTemplate('preDelete', [
             'classname' => $builder->getStubObjectBuilder()->getClassname(),
             'setter' => $this->getColumnSetter(),
-            'addHooks' => $builder->getGeneratorConfig()->getConfigProperty('addHooks'), // ->get()['generator']['objectModel']['addHooks']
+            'addHooks' => $builder->getGeneratorConfig()->getConfigProperty('generator.objectModel.addHooks'), // ->get()['generator']['objectModel']['addHooks']
         ]);
     }
 }
