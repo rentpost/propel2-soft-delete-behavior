@@ -1,0 +1,26 @@
+{
+  "name": "rentpost/propel2-soft-delete-behavior",
+  "type": "propel-behavior",
+  "description": "Propel2 soft_delete behavior",
+  "homepage": "https://github.com/rentpost/propel2-soft-delete-behavior",
+  "license": "MIT",
+  "authors": [
+      {
+          "name": "Jacob Thomason",
+          "email": "jacob@rentpost.com"
+      }
+  ],
+  "require": {
+      "php": ">=7.2.0",
+      "propel/propel": ">=2.0"
+  },
+  "autoload": {
+      "psr-4": {
+          "Rentpost\\Propel\\SoftDelete\\": "src/"
+      }
+  },
+  "extra": {
+    "name": "aggregate_column",
+    "class": "\\Rentpost\\Propel\\SoftDelete\\Behavior"
+  }
+}
