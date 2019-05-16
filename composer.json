@@ -20,7 +20,7 @@
       }
   },
   "extra": {
-    "name": "aggregate_column",
+    "name": "soft_delete",
     "class": "\\Rentpost\\Propel\\SoftDelete\\Behavior"
   }
 }
