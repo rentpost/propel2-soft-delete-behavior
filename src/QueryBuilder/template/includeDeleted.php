@@ -12,3 +12,4 @@ public function includeDeleted(): self
 
     return $this;
 }
+

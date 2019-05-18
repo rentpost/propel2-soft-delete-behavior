@@ -7,3 +7,4 @@ public static function isSoftDeleteEnabled(): bool
 {
     return self::$softDelete;
 }
+

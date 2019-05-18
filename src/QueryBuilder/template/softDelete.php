@@ -11,3 +11,4 @@ public function softDelete(?ConnectionInterface $con = null)
         '<?= $deletedColumn ?>' => time()
     ], $con);
 }
+

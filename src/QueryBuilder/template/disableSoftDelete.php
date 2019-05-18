@@ -5,3 +5,4 @@ public static function disableSoftDelete(): void
 {
     self::$softDelete = false;
 }
+

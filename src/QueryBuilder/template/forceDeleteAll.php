@@ -9,3 +9,4 @@ public function forceDeleteAll(?ConnectionInterface $con = null)
 {
     return $this->deleteAll($con);
 }
+
