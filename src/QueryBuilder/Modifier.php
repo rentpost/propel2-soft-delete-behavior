@@ -93,7 +93,7 @@ protected \$localSoftDelete = true;
      */
     public function addIncludeDeletedMethod(string &$code): void
     {
-        $code = $this->renderTemplate('includeDeleted');
+        $code .= $this->renderTemplate('includeDeleted');
     }
 
 
@@ -104,7 +104,7 @@ protected \$localSoftDelete = true;
      */
     public function addSoftDeleteMethod(string &$code): void
     {
-        $code = $this->renderTemplate('softDelete', [
+        $code .= $this->renderTemplate('softDelete', [
             'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
@@ -117,7 +117,7 @@ protected \$localSoftDelete = true;
      */
     public function addForceDeleteMethod(string &$code): void
     {
-        $code = $this->renderTemplate('forceDelete');
+        $code .= $this->renderTemplate('forceDelete');
     }
 
 
@@ -128,7 +128,7 @@ protected \$localSoftDelete = true;
      */
     public function addForceDeleteAllMethod(string &$code): void
     {
-        $code = $this->renderTemplate('forceDeleteAll');
+        $code .= $this->renderTemplate('forceDeleteAll');
     }
 
 
@@ -139,7 +139,7 @@ protected \$localSoftDelete = true;
      */
     public function addUnDeleteMethod(string &$code): void
     {
-        $code = $this->renderTemplate('unDelete', [
+        $code .= $this->renderTemplate('unDelete', [
             'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
@@ -152,7 +152,7 @@ protected \$localSoftDelete = true;
      */
     public function addEnableSoftDeleteMethod(string &$code): void
     {
-        $code = $this->renderTemplate('enableSoftDelete');
+        $code .= $this->renderTemplate('enableSoftDelete');
     }
 
 
@@ -163,7 +163,7 @@ protected \$localSoftDelete = true;
      */
     public function addDisableSoftDeleteMethod(string &$code): void
     {
-        $code = $this->renderTemplate('disableSoftDelete');
+        $code .= $this->renderTemplate('disableSoftDelete');
     }
 
 
@@ -174,7 +174,7 @@ protected \$localSoftDelete = true;
      */
     public function addIsSoftDeleteEnabledMethod(string &$code): void
     {
-        $code = $this->renderTemplate('isSoftDeleteEnabled');
+        $code .= $this->renderTemplate('isSoftDeleteEnabled');
     }
 
 
