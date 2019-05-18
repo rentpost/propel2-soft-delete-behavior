@@ -140,7 +140,7 @@ protected \$localSoftDelete = true;
     public function addUnDeleteMethod(string &$code): void
     {
         $code .= $this->renderTemplate('unDelete', [
-            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getName(),
         ]);
     }
 

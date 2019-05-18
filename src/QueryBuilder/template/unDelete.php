@@ -8,6 +8,5 @@
  */
 public function unDelete(?ConnectionInterface $con = null)
 {
-    return $this->update([<?= $deletedColumn ?>] => null), $con);
+    return $this->update(['<?= $deletedColumn ?>'] => null), $con);
 }
-
