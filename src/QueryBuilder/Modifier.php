@@ -105,7 +105,7 @@ protected \$localSoftDelete = true;
     public function addSoftDeleteMethod(string &$code): void
     {
         $code .= $this->renderTemplate('softDelete', [
-            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getName(),
         ]);
     }
 
