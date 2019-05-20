@@ -105,7 +105,7 @@ protected \$localSoftDelete = true;
     public function addSoftDeleteMethod(string &$code): void
     {
         $code .= $this->renderTemplate('softDelete', [
-            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getTableMapName(),
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
 
@@ -140,7 +140,7 @@ protected \$localSoftDelete = true;
     public function addUnDeleteMethod(string &$code): void
     {
         $code .= $this->renderTemplate('unDelete', [
-            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getTableMapName(),
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
 
@@ -190,7 +190,7 @@ protected \$localSoftDelete = true;
         $this->builder = $builder;
 
         return $this->renderTemplate('preSelectQuery', [
-            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getTableMapName(),
+            'deletedColumn' => $this->behavior->getColumnForParameter('deleted_column')->getPhpName(),
         ]);
     }
 
