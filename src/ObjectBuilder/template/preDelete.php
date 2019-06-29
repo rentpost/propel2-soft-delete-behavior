@@ -1,4 +1,4 @@
-if ($ret && <?= $classname ?>Query::isSoftDeleteEnabled()) {
+if ($ret && <?= $modelClassname ?>Query::isSoftDeleteEnabled()) {
     $this-><?= $setter ?>(time());
     $this->save($con);
 
@@ -6,7 +6,7 @@ if ($ret && <?= $classname ?>Query::isSoftDeleteEnabled()) {
 
     $con->commit();
 
-    <?= $classname ?>TableMap::removeInstanceFromPool($this->getPrimaryKey());
+    <?= $tableClassname ?>::removeInstanceFromPool($this->getPrimaryKey());
 
     return;
 }

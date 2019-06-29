@@ -99,7 +99,8 @@ class Modifier
         $this->builder = $builder;
 
         return $this->renderTemplate('preDelete', [
-            'classname' => $builder->getStubObjectBuilder()->getClassname(),
+            'modelClassname' => $builder->getStubObjectBuilder()->getClassname(),
+            'mapClassname' => $builder->getTableMapBuilder()->getClassName(),
             'setter' => $this->getColumnSetter(),
             'addHooks' => $builder->getGeneratorConfig()->getConfigProperty('generator.objectModel.addHooks'), // ->get()['generator']['objectModel']['addHooks']
         ]);
