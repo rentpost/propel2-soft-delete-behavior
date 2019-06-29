@@ -6,7 +6,7 @@ if ($ret && <?= $modelClassname ?>Query::isSoftDeleteEnabled()) {
 
     $con->commit();
 
-    <?= $tableClassname ?>::removeInstanceFromPool($this->getPrimaryKey());
+    <?= $mapClassname ?>::removeInstanceFromPool($this->getPrimaryKey());
 
     return;
 }
