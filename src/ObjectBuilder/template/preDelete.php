@@ -1,4 +1,4 @@
-if ($ret && <?= $modelClassname ?>Query::isSoftDeleteEnabled()) {
+if ($ret && <?= $queryClassname ?>::isSoftDeleteEnabled()) {
     $this-><?= $setter ?>(time());
     $this->save($con);
 
