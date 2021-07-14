@@ -46,7 +46,7 @@ class Modifier
         return $this->builder->renderTemplate(
             $filename,
             $replacements,
-            '/../../../../../../../rentpost/propel2-soft-delete-behavior/src/QueryBuilder/template/', // Blame Propel
+            '/../../../../../../../rentpost/propel2-soft-delete-behavior/src/QueryBuilder/template/' // Blame Propel
         );
     }
 
