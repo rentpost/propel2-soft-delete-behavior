@@ -46,7 +46,7 @@ class Modifier
         return $this->builder->renderTemplate(
             $filename,
             $replacements,
-            '/../../../../../../../rentpost/propel2-soft-delete-behavior/src/ObjectBuilder/template/' // Blame Propel
+            realpath(__DIR__) . '/template//'
         );
     }
 
