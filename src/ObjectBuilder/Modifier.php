@@ -46,7 +46,7 @@ class Modifier
         return $this->builder->renderTemplate(
             $filename,
             $replacements,
-            realpath(__DIR__) . '/template//'
+            realpath(__DIR__) . '/template//' . '.tmpl'
         );
     }
 
