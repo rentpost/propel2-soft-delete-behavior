@@ -44,9 +44,9 @@ class Modifier
     protected function renderTemplate(string $filename, array $replacements = []): string
     {
         return $this->builder->renderTemplate(
-            $filename,
+            $filename . '.tmpl',
             $replacements,
-            realpath(__DIR__) . '/template//' . '.tmpl'
+            realpath(__DIR__) . '/template//'
         );
     }
 
